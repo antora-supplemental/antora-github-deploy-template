@@ -1,6 +1,6 @@
-= Antora Build and Deploy Template
+= Antora GitHub Deploy Template
 
-This template is published in the link:https://github.com/antora-supplemental[antora-supplemental] org. Use it to add Antora docs build and GitHub Pages deploy to a repository.
+Use this template to add Antora docs build and GitHub Pages deploy to a repository.
 
 == What you get
 
