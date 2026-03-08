@@ -1,0 +1,18 @@
+# Root Strategy playbook (single-repo). Copy to your repo root.
+# See docs/modules/publishing/pages/antora-deployment.adoc
+#
+# Customize: site.title, site.url, start_page, and content.sources.
+# Optional: Add ui.supplemental_files or supplemental UI for CNAME, etc.
+site:
+  title: My Docs
+  url: https://myorg.github.io/my-repo
+  start_page: my-docs:ROOT:index.adoc
+content:
+  sources:
+    - url: .
+      start_path: docs
+      branches: HEAD
+ui:
+  bundle:
+    url: https://gitlab.com/antora/antora-ui-default/-/jobs/artifacts/HEAD/raw/build/ui-bundle.zip?job=bundle-stable
+    snapshot: true

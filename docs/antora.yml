@@ -1,0 +1,6 @@
+# Component descriptor. Replace name/title; add your nav and modules.
+name: my-docs
+version: ~
+title: My Docs
+nav:
+  - modules/ROOT/nav.adoc

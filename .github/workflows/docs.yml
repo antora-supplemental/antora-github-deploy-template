@@ -1,0 +1,69 @@
+# Antora build + deploy to GitHub Pages (Root Strategy).
+# Copy into your docs repo. See docs/modules/publishing/pages/antora-deployment.adoc
+#
+# Required: Repo Settings → Pages → Deploy from branch → gh-pages, / (root).
+# Optional: Add CNAME via supplemental UI; set Custom domain in Settings → Pages.
+name: Docs
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'docs/**'
+      - 'antora-playbook.yml'
+      - '.github/workflows/docs.yml'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'docs/**'
+      - 'antora-playbook.yml'
+      - '.github/workflows/docs.yml'
+  workflow_dispatch:
+  repository_dispatch:
+    types: [extension-updated]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      # If playbook content.sources point at OTHER PRIVATE repos, GITHUB_TOKEN cannot clone them.
+      # Uncomment below and add repo secret ANTORA_READ_TOKEN (PAT with read access to those repos).
+      # See docs/modules/publishing/pages/antora-deployment.adoc (Private repos: GITHUB_TOKEN vs PAT).
+      # - name: Configure git for private content sources
+      #   run: |
+      #     git config --global url."https://${{ secrets.ANTORA_READ_TOKEN }}@github.com/".insteadOf "https://github.com/"
+
+      - name: Build docs
+        run: pnpm dlx antora antora-playbook.yml
+
+      - name: Upload site
+        uses: actions/upload-pages-artifact@3
+        with:
+          path: build/site
+
+  deploy:
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deploy
+        uses: actions/deploy-pages@4
