@@ -1,8 +1,7 @@
 # Antora build + deploy to GitHub Pages (Root Strategy).
 # Copy into your docs repo. See docs/modules/publishing/pages/antora-deployment.adoc
 #
-# Required: Repo Settings → Pages → Deploy from branch → gh-pages, / (root).
-# Optional: Add CNAME via supplemental UI; set Custom domain in Settings → Pages.
+# Required: Repo Settings → Pages → GitHub Actions (not branch deploy).
 name: Docs
 
 on:
@@ -11,16 +10,29 @@ on:
     paths:
       - 'docs/**'
       - 'antora-playbook.yml'
+      - 'package.json'
+      - 'pnpm-lock.yaml'
       - '.github/workflows/docs.yml'
   pull_request:
     branches: [main]
     paths:
       - 'docs/**'
       - 'antora-playbook.yml'
+      - 'package.json'
+      - 'pnpm-lock.yaml'
       - '.github/workflows/docs.yml'
   workflow_dispatch:
   repository_dispatch:
     types: [extension-updated]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
 
 jobs:
   build:
@@ -28,38 +40,36 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          package_json_file: package.json
+
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-
-      - name: Install pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          version: 9
+          cache: pnpm
+          cache-dependency-path: pnpm-lock.yaml
 
       # If playbook content.sources point at OTHER PRIVATE repos, GITHUB_TOKEN cannot clone them.
-      # Uncomment below and add repo secret ANTORA_READ_TOKEN (PAT with read access to those repos).
-      # See docs/modules/publishing/pages/antora-deployment.adoc (Private repos: GITHUB_TOKEN vs PAT).
-      # - name: Configure git for private content sources
-      #   run: |
-      #     git config --global url."https://${{ secrets.ANTORA_READ_TOKEN }}@github.com/".insteadOf "https://github.com/"
-
+      # Use git_credentials or github_token on the action; see antora-deployment.adoc.
       - name: Build docs
-        run: pnpm dlx antora antora-playbook.yml
+        id: antora
+        uses: antora-supplemental/antora-build-action@v1
+        with:
+          playbook: antora-playbook.yml
+          output_dir: build/site
 
       - name: Upload site
         uses: actions/upload-pages-artifact@v4
         with:
-          path: build/site
+          path: ${{ steps.antora.outputs.site-path }}
 
   deploy:
     if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
     needs: build
     runs-on: ubuntu-latest
-    permissions:
-      pages: write
-      id-token: write
     environment:
       name: github-pages
       url: ${{ steps.deploy.outputs.page_url }}
