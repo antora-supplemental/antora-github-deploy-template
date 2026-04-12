@@ -52,14 +52,20 @@ jobs:
           cache: pnpm
           cache-dependency-path: pnpm-lock.yaml
 
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
       # If playbook content.sources point at OTHER PRIVATE repos, GITHUB_TOKEN cannot clone them.
       # Use git_credentials or github_token on the action; see antora-deployment.adoc.
       - name: Build docs
         id: antora
-        uses: antora-supplemental/antora-build-action@v1
+        uses: antora-supplemental/antora-build-action@v2
         with:
           playbook: antora-playbook.yml
           output_dir: build/site
+          install_dependencies: false
+          setup_pnpm: false
+          setup_node: false
 
       - name: Upload site
         uses: actions/upload-pages-artifact@v4
