@@ -1,35 +1,69 @@
+ifndef::env-github[:icons: font]
+:toc: preamble
+:toclevels: 2
+:sectanchors:
+endif::[]
+
+ifndef::env-github[]
+image:https://img.shields.io/github/contributors/antora-supplemental/antora-github-deploy-template.svg?style=for-the-badge[Contributors,link=https://github.com/antora-supplemental/antora-github-deploy-template/graphs/contributors]
+image:https://img.shields.io/github/forks/antora-supplemental/antora-github-deploy-template.svg?style=for-the-badge[Forks,link=https://github.com/antora-supplemental/antora-github-deploy-template/network/members]
+image:https://img.shields.io/github/stars/antora-supplemental/antora-github-deploy-template.svg?style=for-the-badge[Stars,link=https://github.com/antora-supplemental/antora-github-deploy-template/stargazers]
+image:https://img.shields.io/github/issues/antora-supplemental/antora-github-deploy-template.svg?style=for-the-badge[Issues,link=https://github.com/antora-supplemental/antora-github-deploy-template/issues]
+endif::[]
+
+ifdef::env-github[]
+image:https://img.shields.io/github/contributors/antora-supplemental/antora-github-deploy-template.svg?style=for-the-badge[Contributors]
+image:https://img.shields.io/github/forks/antora-supplemental/antora-github-deploy-template.svg?style=for-the-badge[Forks]
+image:https://img.shields.io/github/stars/antora-supplemental/antora-github-deploy-template.svg?style=for-the-badge[Stars]
+image:https://img.shields.io/github/issues/antora-supplemental/antora-github-deploy-template.svg?style=for-the-badge[Issues]
+endif::[]
+
 = Antora GitHub Deploy Template
+
+Template: Antora docs build + GitHub Pages deploy workflow (playbook, docs.yml, private-repo PAT support).
+
+link:https://github.com/antora-supplemental/antora-github-deploy-template/issues[Report Bug] ·
+link:https://github.com/antora-supplemental/antora-github-deploy-template/issues[Request Feature]
+
+== About The Project
 
 Use this template to add Antora docs build and GitHub Pages deploy to a repository.
 
-== What you get
+== Usage
+
+=== What you get
 
 * *Build*: Antora runs on push/PR when `docs/**`, `antora-playbook.yml`, or the workflow file change.
 * *Deploy*: On `main`, the built site is deployed to GitHub Pages (branch `gh-pages` or Pages environment).
 * *Extension refresh*: Workflow can be triggered by `repository_dispatch` (e.g. when a shared UI bundle updates).
 
-== Quick setup
+=== Quick setup
 
-. Copy `.github/workflows/docs.yml` into your repo’s `.github/workflows/`.
+. Copy `.github/workflows/docs.yml` into your repo's `.github/workflows/`.
 . Copy `antora-playbook.yml` to your repo root.
 . In the playbook, set `site.title`, `site.url`, and `start_page` to match your project.
 . Ensure you have a `docs/` folder with an `antora.yml` and at least one module (e.g. `docs/modules/ROOT/pages/index.adoc`).
 . In the repo: *Settings → Pages*: set source to *GitHub Actions* (or *Deploy from a branch* with branch `gh-pages` if you use that variant).
 
-== Requirements
+=== Requirements
 
 * Node 20 and pnpm (workflow installs pnpm).
 * Repo *Settings → Pages*: either *Deploy from a branch* (branch `gh-pages`, root) or *GitHub Actions* (this template uses `upload-pages-artifact` + `deploy-pages`; for Actions-based deployment the source must be *GitHub Actions*).
 
-== Private content sources (multi-repo, same org)
+=== Private content sources (multi-repo, same org)
 
 If your playbook pulls from other *private* repos in the org, GITHUB_TOKEN is not enough to clone them. Add a PAT (e.g. `ANTORA_READ_TOKEN`) and uncomment the "Configure git for private content sources" step in the workflow. Full explanation: `docs/modules/publishing/pages/antora-deployment.adoc` — see "Private repos: GITHUB_TOKEN vs PAT".
 
-== Custom domain
+=== Custom domain
 
 * In *Settings → Pages*, set *Custom domain* to your domain.
 * To add a `CNAME` file to the site root, use a supplemental UI and list the file in `supplemental-ui/ui.yml` under `static_files`.
 
-== More
-
 Full deployment guide (including private repos and PAT): link:https://github.com/dev-centr/devcentr/blob/main/docs/modules/publishing/pages/antora-deployment.adoc[antora-deployment.adoc] in the devcentr repo.
+
+== Contact
+
+Antora Supplemental — support@antora-supplemental.org
+
+* Project: https://github.com/antora-supplemental/antora-github-deploy-template
+* Site: https://antora-supplemental.org
