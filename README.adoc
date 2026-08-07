@@ -4,19 +4,11 @@ ifndef::env-github[:icons: font]
 :sectanchors:
 endif::[]
 
-ifndef::env-github[]
+[[readme-top]]
 image:https://img.shields.io/github/contributors/antora-supplemental/antora-github-deploy-template.svg?style=for-the-badge[Contributors,link=https://github.com/antora-supplemental/antora-github-deploy-template/graphs/contributors]
 image:https://img.shields.io/github/forks/antora-supplemental/antora-github-deploy-template.svg?style=for-the-badge[Forks,link=https://github.com/antora-supplemental/antora-github-deploy-template/network/members]
 image:https://img.shields.io/github/stars/antora-supplemental/antora-github-deploy-template.svg?style=for-the-badge[Stars,link=https://github.com/antora-supplemental/antora-github-deploy-template/stargazers]
 image:https://img.shields.io/github/issues/antora-supplemental/antora-github-deploy-template.svg?style=for-the-badge[Issues,link=https://github.com/antora-supplemental/antora-github-deploy-template/issues]
-endif::[]
-
-ifdef::env-github[]
-image:https://img.shields.io/github/contributors/antora-supplemental/antora-github-deploy-template.svg?style=for-the-badge[Contributors]
-image:https://img.shields.io/github/forks/antora-supplemental/antora-github-deploy-template.svg?style=for-the-badge[Forks]
-image:https://img.shields.io/github/stars/antora-supplemental/antora-github-deploy-template.svg?style=for-the-badge[Stars]
-image:https://img.shields.io/github/issues/antora-supplemental/antora-github-deploy-template.svg?style=for-the-badge[Issues]
-endif::[]
 
 = Antora GitHub Deploy Template
 
@@ -28,6 +20,8 @@ link:https://github.com/antora-supplemental/antora-github-deploy-template/issues
 == About The Project
 
 Use this template to add Antora docs build and GitHub Pages deploy to a repository.
+
+link:#readme-top[back to top]
 
 == Usage
 
@@ -61,9 +55,13 @@ If your playbook pulls from other *private* repos in the org, GITHUB_TOKEN is no
 
 Full deployment guide (including private repos and PAT): link:https://github.com/dev-centr/devcentr/blob/main/docs/modules/publishing/pages/antora-deployment.adoc[antora-deployment.adoc] in the devcentr repo.
 
+link:#readme-top[back to top]
+
 == Contact
 
 Antora Supplemental — support@antora-supplemental.org
 
 * Project: https://github.com/antora-supplemental/antora-github-deploy-template
 * Site: https://antora-supplemental.org
+
+link:#readme-top[back to top]
