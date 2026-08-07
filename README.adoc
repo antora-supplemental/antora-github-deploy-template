@@ -4,7 +4,51 @@ ifndef::env-github[:icons: font]
 :sectanchors:
 endif::[]
 
-[[readme-top]]
+ifdef::env-github[]
+++++
+<a id="readme-top"></a>
+<div align="center">
+<a href="https://github.com/antora-supplemental/antora-github-deploy-template/graphs/contributors"><img src="https://img.shields.io/github/contributors/antora-supplemental/antora-github-deploy-template.svg?style=for-the-badge" alt="Contributors"></a>
+<a href="https://github.com/antora-supplemental/antora-github-deploy-template/network/members"><img src="https://img.shields.io/github/forks/antora-supplemental/antora-github-deploy-template.svg?style=for-the-badge" alt="Forks"></a>
+<a href="https://github.com/antora-supplemental/antora-github-deploy-template/stargazers"><img src="https://img.shields.io/github/stars/antora-supplemental/antora-github-deploy-template.svg?style=for-the-badge" alt="Stars"></a>
+<a href="https://github.com/antora-supplemental/antora-github-deploy-template/issues"><img src="https://img.shields.io/github/issues/antora-supplemental/antora-github-deploy-template.svg?style=for-the-badge" alt="Issues"></a>
+<br />
+<h3 align="center">Antora GitHub Deploy Template</h3>
+<p align="center">
+Template: Antora docs build + GitHub Pages deploy workflow (playbook, docs.yml, private-repo PAT support).
+<br /><br />
+<a href="https://github.com/antora-supplemental/antora-github-deploy-template/issues">Report Bug</a>
+&middot;
+<a href="https://github.com/antora-supplemental/antora-github-deploy-template/issues">Request Feature</a>
+</p>
+</div>
+++++
+endif::[]
+
+ifndef::env-github[]
+
+ifdef::env-github[]
+++++
+<a id="readme-top"></a>
+<div align="center">
+<a href="https://github.com/antora-supplemental/antora-github-deploy-template/graphs/contributors"><img src="https://img.shields.io/github/contributors/antora-supplemental/antora-github-deploy-template.svg?style=for-the-badge" alt="Contributors"></a>
+<a href="https://github.com/antora-supplemental/antora-github-deploy-template/network/members"><img src="https://img.shields.io/github/forks/antora-supplemental/antora-github-deploy-template.svg?style=for-the-badge" alt="Forks"></a>
+<a href="https://github.com/antora-supplemental/antora-github-deploy-template/stargazers"><img src="https://img.shields.io/github/stars/antora-supplemental/antora-github-deploy-template.svg?style=for-the-badge" alt="Stars"></a>
+<a href="https://github.com/antora-supplemental/antora-github-deploy-template/issues"><img src="https://img.shields.io/github/issues/antora-supplemental/antora-github-deploy-template.svg?style=for-the-badge" alt="Issues"></a>
+<br />
+<h3 align="center">Antora GitHub Deploy Template</h3>
+<p align="center">
+Template: Antora docs build + GitHub Pages deploy workflow (playbook, docs.yml, private-repo PAT support).
+<br /><br />
+<a href="https://github.com/antora-supplemental/antora-github-deploy-template/issues">Report Bug</a>
+&middot;
+<a href="https://github.com/antora-supplemental/antora-github-deploy-template/issues">Request Feature</a>
+</p>
+</div>
+++++
+endif::[]
+
+ifndef::env-github[]
 image:https://img.shields.io/github/contributors/antora-supplemental/antora-github-deploy-template.svg?style=for-the-badge[Contributors,link=https://github.com/antora-supplemental/antora-github-deploy-template/graphs/contributors]
 image:https://img.shields.io/github/forks/antora-supplemental/antora-github-deploy-template.svg?style=for-the-badge[Forks,link=https://github.com/antora-supplemental/antora-github-deploy-template/network/members]
 image:https://img.shields.io/github/stars/antora-supplemental/antora-github-deploy-template.svg?style=for-the-badge[Stars,link=https://github.com/antora-supplemental/antora-github-deploy-template/stargazers]
@@ -16,13 +60,15 @@ Template: Antora docs build + GitHub Pages deploy workflow (playbook, docs.yml, 
 
 link:https://github.com/antora-supplemental/antora-github-deploy-template/issues[Report Bug] ·
 link:https://github.com/antora-supplemental/antora-github-deploy-template/issues[Request Feature]
+endif::[]
 
 == About The Project
 
 Use this template to add Antora docs build and GitHub Pages deploy to a repository.
 
-link:#readme-top[back to top]
-
+++++
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+++++
 == Usage
 
 === What you get
@@ -55,8 +101,9 @@ If your playbook pulls from other *private* repos in the org, GITHUB_TOKEN is no
 
 Full deployment guide (including private repos and PAT): link:https://github.com/dev-centr/devcentr/blob/main/docs/modules/publishing/pages/antora-deployment.adoc[antora-deployment.adoc] in the devcentr repo.
 
-link:#readme-top[back to top]
-
+++++
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+++++
 == Contact
 
 Antora Supplemental — support@antora-supplemental.org
@@ -64,4 +111,6 @@ Antora Supplemental — support@antora-supplemental.org
 * Project: https://github.com/antora-supplemental/antora-github-deploy-template
 * Site: https://antora-supplemental.org
 
-link:#readme-top[back to top]
+++++
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+++++
